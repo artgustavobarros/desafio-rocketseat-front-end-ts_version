@@ -3,9 +3,9 @@ import ArrowIcon from '../../assets/imgs/arrow.svg?react'
 import { Container } from "./styles"
 import { ButtonProps } from "./types"
 
-const Button = ({title, variant=false, transparent=false, arrow=false}: ButtonProps) =>{
+const Button = ({title, variant=false, transparent=false, arrow=false, inversed=false}: ButtonProps) =>{
   return(
-    <Container>
+    <Container $transparent={transparent} $inversed={inversed}>
       {
         variant && <PlusIcon/>
       }

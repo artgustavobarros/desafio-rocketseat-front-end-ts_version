@@ -23,21 +23,6 @@ export const Logo = styled.h1`
   color: ${({theme}) => theme.colors.text_pink_1};
 `
 
-export const Search = styled.input`
-  width: 630px;
-  height: 56px;
-  border-radius: 10px;
-  background-color: ${({theme}) => theme.colors.background_2};
-  outline: none;
-  border: none;
-  padding: 19px 0 19px 24px;
-
-  &::placeholder{
-    color: ${({theme}) => theme.colors.text_gray_1}; 
-  }
-
-`
-
 export const Profile = styled.section`
   display: flex;
   align-items: center;

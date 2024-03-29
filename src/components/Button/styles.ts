@@ -2,14 +2,35 @@ import styled from "styled-components";
 import { ButtonStyledProps } from "./types";
 
 export const Container = styled.button<ButtonStyledProps>`
-  width: auto;//OBSERVAR SE VAI MUDAR NO HOME
+  width: ${({$transparent}) => $transparent? 'auto': '100%'};//OBSERVAR SE VAI MUDAR NO HOME
   height: 48px;
   cursor: pointer;
   border: none;
   border-radius: 8px;
-  background-color: ${({theme, $transparent: transparent}) => transparent? theme.colors.text_pink_1: 'transparent'};
-  color: ${({theme, $transparent: transparent}) => transparent? theme.colors.background_1: theme.colors.text_pink_1};
-  font-size: 16px;
+
+  background-color: ${({theme, $transparent, $inversed}) => {
+    if ($transparent){
+      return 'transparent'
+    }
+
+    if ($inversed){
+      return theme.colors.background_black
+    }
+
+    return theme.colors.text_pink_1
+  }};
+
+  color: ${({theme, $transparent, $inversed}) => {
+    if ($transparent){
+      return theme.colors.text_pink_1
+    }
+
+    if ($inversed){
+      return theme.colors.text_pink_1
+    }
+
+    return theme.colors.background_1
+  }};
 
   display: flex;
   align-items: center;

@@ -55,6 +55,7 @@ export const Headline = styled.section`
   width:368px;
   gap: 24px 0;
   margin-bottom: 40px;
+
   > h1 {
     grid-area: title;
     color: ${({theme}) => theme.colors.text_white_1};
@@ -73,7 +74,7 @@ export const Headline = styled.section`
 export const By = styled.div`
   display: flex;
   align-items: center;
-  gap: 1.5px;
+  gap: 8px;
   grid-area: by;
   > img {
     width: 16px;
@@ -87,7 +88,7 @@ export const Date = styled.div`
   grid-area: date;
   display: flex;
   align-items: center;
-  gap: 1.5px;
+  gap: 8px;
 `
 
 export const Description = styled.div`

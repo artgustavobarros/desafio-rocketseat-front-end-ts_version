@@ -1,4 +1,5 @@
-import { Container, Logo, Profile, Search } from "./styles"
+import Input from "../Input"
+import { Container, Logo, Profile } from "./styles"
 
 const Header = () =>{
   return(
@@ -6,7 +7,7 @@ const Header = () =>{
       <Logo>
         RocketMovies
       </Logo>
-      <Search placeholder="Pesquisar pelo título"/>
+      <Input placeholder="Pesquisar pelo título"/>
       <Profile>
         <div>
           <strong>Rodrigo Gonçalves</strong>
