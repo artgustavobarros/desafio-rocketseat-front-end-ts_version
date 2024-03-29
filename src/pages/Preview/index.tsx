@@ -4,6 +4,7 @@ import Score from "../../components/Score"
 import { By, Container, Content, Date, Description, Headline } from "./styles"
 import TimerIcon from "../../assets/imgs/timer.svg?react"
 import Tag from "../../components/Tag"
+import { Link } from "react-router-dom"
 
 const Preview = () =>{
   return(
@@ -11,7 +12,9 @@ const Preview = () =>{
       <Header/>
       <Content>
         <main>
-        <Button title='Voltar' transparent arrow/>
+          <Link to='/'>
+            <Button title='Voltar' transparent arrow/>
+          </Link>
           <Headline>
             <h1>Interestelar</h1>
             <Score score={4} preview/>

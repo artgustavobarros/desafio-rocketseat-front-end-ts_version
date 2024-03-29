@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Button from "../../components/Button"
 import Input from "../../components/Input"
 import { Avatar, Container, Content, Form } from "./styles"
@@ -8,7 +9,9 @@ const Profile = () =>{
   return(
     <Container>
       <header>
-        <Button title='Voltar' arrow transparent/>
+        <Link to='/'>
+          <Button title='Voltar' arrow transparent/>
+        </Link>
       </header>
       <Content>
         <Form>

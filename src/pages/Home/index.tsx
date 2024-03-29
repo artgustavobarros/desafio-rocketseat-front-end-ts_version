@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Button from "../../components/Button"
 import Header from "../../components/Header"
 import Note from "../../components/Note"
@@ -10,7 +11,9 @@ const Home = () =>{
         <Content>
           <Headline>
             <h1>Meus filmes</h1>
-            <Button title="Adicionar filme" variant/>
+            <Link to='/new'>
+              <Button title="Adicionar filme" variant/>
+            </Link>
           </Headline>
           <section>
             <Note 

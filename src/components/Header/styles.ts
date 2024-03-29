@@ -29,6 +29,8 @@ export const Profile = styled.section`
   gap: 9px;
 
   div:first-child{
+    width: auto;
+    white-space: nowrap;
     display: flex;
     flex-direction: column;
     align-items: end;

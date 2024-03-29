@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Button from "../../components/Button"
 import Header from "../../components/Header"
 import Input from "../../components/Input"
@@ -11,7 +12,9 @@ const New = () => {
       <Content>
         <main>
           <div>
-            <Button title='Voltar' transparent arrow/>
+            <Link to='/'>
+              <Button title='Voltar' transparent arrow/>
+            </Link>
           </div>
           <h1>Novo filme</h1>
           <Wrapper>
