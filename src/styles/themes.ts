@@ -8,6 +8,7 @@ const themes = {
     background_6: '#262529',
     background_black: '#0D0C0F',
     text_pink_1: "#FF859B",
+    text_pink_2: '#CAC4CF',
     text_gray_1: "#948F99",
     text_gray_2: "#999591",
     text_white_1: "#F4EDE8",
