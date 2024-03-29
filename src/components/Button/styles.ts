@@ -7,6 +7,8 @@ export const Container = styled.button<ButtonStyledProps>`
   cursor: pointer;
   border: none;
   border-radius: 8px;
+  font-family: 'Roboto Slab';
+  font-size: 16px;
 
   background-color: ${({theme, $transparent, $inversed}) => {
     if ($transparent){

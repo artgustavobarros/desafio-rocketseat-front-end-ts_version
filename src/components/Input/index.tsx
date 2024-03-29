@@ -1,9 +1,14 @@
 import { Container} from "./styles"
 import { InputsProps } from "./types"
 
-const Input = ({...rest}: InputsProps) =>{
+const Input = ({icon: Icon, ...rest}: InputsProps) =>{
   return(
-    <Container{...rest}/>
+    <Container>
+      {
+        Icon && <Icon size={20}/>
+      }
+      <input {...rest}/>
+    </Container>
   )
 }
 
