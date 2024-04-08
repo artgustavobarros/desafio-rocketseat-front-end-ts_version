@@ -4,8 +4,16 @@ import Input from "../../components/Input"
 import Button from "../../components/Button"
 import { useState } from "react"
 import { api } from "../../services/api"
+import { Link, useNavigate } from "react-router-dom"
+
 
 const SignUp = () => {
+
+  // ENTENDER PQ PRECISA DE DUAS REQUISIÇÕES
+  // FAZER UM NAVIGATE PARA O LOGIN QUANDO O CADASTRO FOR BEM SUCESSEDIDO
+
+  const navigate = useNavigate()
+
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -14,7 +22,7 @@ const SignUp = () => {
   async function handleSignUp(){
     try{
       await api.post('/users/register', {name, email, password})
-      alert('User sucessfully created')
+      navigate('/')
     }catch(error){
       if(error instanceof Error){
         alert(error.message)
@@ -34,7 +42,9 @@ const SignUp = () => {
           <Input placeholder="Senha" type='password' icon={FiLock} onChange={(e) => setPassword(e.target.value)}/>
           <Button title="Cadastrar" onClick={handleSignUp}/>
         </Form>
-        <Button title="Voltar para o login" transparent arrow/>
+        <Link to='/'>
+          <Button title="Voltar para o login" transparent arrow/>
+        </Link>
       </Content>
       <Background></Background>
     </Container>

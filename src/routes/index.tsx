@@ -8,8 +8,6 @@
 // import SignUp from "../pages/SignUp";
 import { protectedRouter } from "./auth";
 
-const logged = localStorage.getItem('token')
-
-const router = protectedRouter({logged})
+const router = protectedRouter()
 
 export default router

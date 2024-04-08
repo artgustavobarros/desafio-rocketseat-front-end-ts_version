@@ -9,13 +9,12 @@ import { useAuth } from "../../hooks/context/context"
 
 const SignIn = () => {
 
+  const {signIn} = useAuth()
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const {signIn} = useAuth()
-
-  async function handleSignIn(e){
-    e.preventDefault()
+  function handleSignIn(){
     signIn({email, password})
   }
 
@@ -40,7 +39,7 @@ const SignIn = () => {
           />
           <Button 
             title="Entrar"
-            onClick={(e) => handleSignIn(e)}
+            onClick={handleSignIn}
           />
         </Form>
         <Link to='/register'>
@@ -53,3 +52,4 @@ const SignIn = () => {
 }
 
 export default SignIn
+

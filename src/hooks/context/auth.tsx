@@ -7,35 +7,35 @@ export const AuthContext = createContext({})
 export const AuthProvider = ({children}: AuthProviderProps) =>{
 
   const [data, setData] = useState({})
-  const [ logged, setLogged] = useState(false)
 
   async function signIn({email, password}: SignInProps){
+    
     try{
-      const {data} = await api.post('/users/login', {email, password})
-      const {user, token} = data
+      const response = await api.post('/users/login', {email, password})
+      const {user, token} = response.data
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-
-      console.log(user, token)
-
-      alert('Sucessfully logged')
-
-      setData(user)
-      setLogged(true)
 
       localStorage.setItem('user', JSON.stringify(user))
       localStorage.setItem('token', token)
-      
+
+      setData({user, token})
+
     }catch(err){
       if (err instanceof Error){
         alert(err.message);
       }
-      setLogged(false)
     }
+  }
+
+  function signOut(){
+    localStorage.removeItem('user')
+    localStorage.removeItem('token')
+    setData({})
   }
 
 
   return(
-    <AuthContext.Provider value={{data, signIn, logged}}>
+    <AuthContext.Provider value={{signIn, signOut}}>
       {children}
     </AuthContext.Provider>
   )

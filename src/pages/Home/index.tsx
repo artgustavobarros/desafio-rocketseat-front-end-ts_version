@@ -5,6 +5,8 @@ import Note from "../../components/Note"
 import { Container, Content, Headline } from "./styles"
 
 const Home = () =>{
+
+
   return(
     <Container>
         <Header/>

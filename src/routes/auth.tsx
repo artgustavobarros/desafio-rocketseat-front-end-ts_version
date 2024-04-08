@@ -6,11 +6,12 @@ import Profile from "../pages/Profile";
 import Page404 from "../pages/404";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
-import { ProtectedRouterProps } from "./types";
 
-export function protectedRouter({logged}: ProtectedRouterProps){
+export function protectedRouter(){
 
   let router
+
+  const logged = localStorage.getItem('token')
 
   if (logged){
     router = createBrowserRouter([

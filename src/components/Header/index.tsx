@@ -1,20 +1,27 @@
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Input from "../Input"
 import { Container, Logo, Profile } from "./styles"
+import { useAuth } from "../../hooks/context/context"
 
 const Header = () =>{
+  const navigate = useNavigate()
+  const {signOut} = useAuth()
+
+  async function handleSignOut(){
+    signOut()
+    navigate('/')
+  }
+
   return(
     <Container>
-      <Link to='/'>
-        <Logo>
+        <Logo to='/'>
           RocketMovies
         </Logo>
-      </Link>
       <Input placeholder="Pesquisar pelo título"/>
       <Profile>
         <div>
           <strong>Rodrigo Gonçalves</strong>
-          <button>Sair</button>
+          <button onClick={handleSignOut}>Sair</button>
         </div>
         <div>
           <Link to='/profile'>
