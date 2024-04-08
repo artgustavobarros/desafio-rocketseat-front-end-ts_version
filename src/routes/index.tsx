@@ -6,8 +6,20 @@
 // import Page404 from "../pages/404";
 // import SignIn from "../pages/SignIn";
 // import SignUp from "../pages/SignUp";
+import { RouterProvider } from "react-router-dom";
 import { protectedRouter } from "./auth";
+import { useAuth } from "../hooks/context/context";
 
-const router = protectedRouter()
+const Routes = () =>{
 
-export default router
+  const {data} = useAuth()
+  console.log(data)
+
+  const router = protectedRouter({logged: data.token})
+
+  return(
+    <RouterProvider router={router}/>
+  )
+}
+
+export default Routes

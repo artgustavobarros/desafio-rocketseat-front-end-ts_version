@@ -9,9 +9,6 @@ import { Link, useNavigate } from "react-router-dom"
 
 const SignUp = () => {
 
-  // ENTENDER PQ PRECISA DE DUAS REQUISIÇÕES
-  // FAZER UM NAVIGATE PARA O LOGIN QUANDO O CADASTRO FOR BEM SUCESSEDIDO
-
   const navigate = useNavigate()
 
   const [name, setName] = useState('')
@@ -21,8 +18,8 @@ const SignUp = () => {
 
   async function handleSignUp(){
     try{
-      await api.post('/users/register', {name, email, password})
       navigate('/')
+      await api.post('/users/register', {name, email, password})
     }catch(error){
       if(error instanceof Error){
         alert(error.message)
@@ -43,7 +40,7 @@ const SignUp = () => {
           <Button title="Cadastrar" onClick={handleSignUp}/>
         </Form>
         <Link to='/'>
-          <Button title="Voltar para o login" transparent arrow/>
+          <Button title="Voltar para o login" transparent arrow />
         </Link>
       </Content>
       <Background></Background>

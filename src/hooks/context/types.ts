@@ -4,14 +4,20 @@ export interface AuthProviderProps {
   children: ReactNode
 }
 
-
 export interface SignInProps{
   email: string
   password: string
 }
 
+export interface UpdateProps{
+  name: string
+  email: string
+  old_password: string
+  new_password: string
+}
+
+
 export interface AuthContextProps{
-  signIn: ({email, password}: SignInProps) => void
   data: {
     user: {
       avatar?: string
@@ -24,5 +30,7 @@ export interface AuthContextProps{
     },
     token: string
   }
+  signIn: ({email, password}: SignInProps) => void
   signOut: () => void 
+  update: ({name, email, old_password, new_password}: UpdateProps) => void
 }

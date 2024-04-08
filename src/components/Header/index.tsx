@@ -7,9 +7,9 @@ const Header = () =>{
   const navigate = useNavigate()
   const {signOut} = useAuth()
 
-  async function handleSignOut(){
-    signOut()
+  function handleSignOut(){
     navigate('/')
+    signOut()
   }
 
   return(

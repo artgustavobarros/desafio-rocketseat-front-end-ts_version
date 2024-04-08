@@ -14,7 +14,8 @@ const SignIn = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  function handleSignIn(){
+  function handleSignIn(e:React.MouseEvent<HTMLButtonElement, MouseEvent>){
+    e.preventDefault()
     signIn({email, password})
   }
 
@@ -39,7 +40,7 @@ const SignIn = () => {
           />
           <Button 
             title="Entrar"
-            onClick={handleSignIn}
+            onClick={e => handleSignIn(e)}
           />
         </Form>
         <Link to='/register'>
