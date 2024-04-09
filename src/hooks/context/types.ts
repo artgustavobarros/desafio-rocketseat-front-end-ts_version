@@ -23,6 +23,17 @@ export interface AddNotesProps{
   arr_tags: string[]
 }
 
+export interface Notes{
+  id: string
+  title: string
+  description: string
+  rating: string
+  arr_tags: string[]
+  created_at: string
+  updated_at: string
+  user_id: string
+}
+
 export interface AuthContextProps{
   data: {
     user: {

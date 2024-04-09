@@ -47,8 +47,13 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
   }
 
   async function addNote({title, description, rating, arr_tags}: AddNotesProps){
-    const response = await api.post('/notes/register', {title, description, rating, arr_tags})
-    console.log(response)
+    try{
+      await api.post('/notes/register', {title, description, rating, arr_tags})
+    }catch(err){
+      if (err instanceof Error){
+        alert(err.message)
+      }
+    }
   }
 
   useEffect(() =>{
