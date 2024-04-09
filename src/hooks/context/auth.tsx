@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState} from "react";
-import { AuthProviderProps, SignInProps, UpdateProps} from "./types";
+import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps} from "./types";
 import { api } from "../../services/api";
 
 export const AuthContext = createContext({})
@@ -46,6 +46,11 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
     setData({})
   }
 
+  async function addNote({title, description, rating, arr_tags}: AddNotesProps){
+    const response = await api.post('/notes/register', {title, description, rating, arr_tags})
+    console.log(response)
+  }
+
   useEffect(() =>{
     const user = localStorage.getItem('user')
     const token = localStorage.getItem('token')
@@ -59,7 +64,7 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
 
 
   return(
-    <AuthContext.Provider value={{data, signIn, signOut, update}}>
+    <AuthContext.Provider value={{data, signIn, signOut, update, addNote}}>
       {children}
     </AuthContext.Provider>
   )

@@ -79,13 +79,16 @@ export const Marker = styled.section`
 
   > div {
     width: 100%;
-    height: 83px;
+    min-height: 83px;
     background-color: ${({theme}) => theme.colors.background_black};
     border-radius: 8px;
     display: flex;
     padding: 16px;
     gap: 24px;
+
+    flex-wrap: wrap;
   }
 
   margin-block: 40px;
+
 `
