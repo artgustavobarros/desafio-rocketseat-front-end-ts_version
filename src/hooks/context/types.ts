@@ -23,7 +23,7 @@ export interface AddNotesProps{
   arr_tags: string[]
 }
 
-export interface Notes{
+export interface Note{
   id: string
   title: string
   description: string
@@ -51,7 +51,7 @@ export interface AuthContextProps{
     },
     token: string
   }
-  notes: Notes[]
+  notes: Note[]
   signIn: ({email, password}: SignInProps) => void
   signOut: () => void 
   update: ({name, email, old_password, new_password}: UpdateProps) => void

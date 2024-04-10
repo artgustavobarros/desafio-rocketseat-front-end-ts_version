@@ -5,9 +5,11 @@ export const Container = styled.div`
   height: 222.85px;
   background-color: ${({theme}) => theme.colors.background_3};
   font-family: 'Roboto Slab';
-  padding: 32px;
   border-radius: 16px;
   margin-bottom: 24px;
+  border: none;
+
+  text-align: left;
   
   h1{
     color: ${({theme}) => theme.colors.text_white_1};
@@ -32,5 +34,14 @@ export const Container = styled.div`
     display: flex;
     flex-direction: row;
     gap: 8px;
+  }
+
+  > button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    padding: 32px;
+    text-align: left;
   }
 `

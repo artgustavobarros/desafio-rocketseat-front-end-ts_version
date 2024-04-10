@@ -23,7 +23,7 @@ export function protectedRouter({logged}: ProtectedRouterProps){
         element: <New/>
       },
       {
-        path:'/preview',//add params id after
+        path:'/preview/:id',
         element: <Preview/>
       },
       {

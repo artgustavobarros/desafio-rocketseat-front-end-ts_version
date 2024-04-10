@@ -26,6 +26,7 @@ const Home = () =>{
               notes && notes.map((note) => (
                 <Note
                   key={note.id}
+                  id={note.id}
                   title={note.title}
                   subtext={note.description}
                   score={note.rating}

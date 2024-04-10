@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState} from "react";
-import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps, FetchNotesByTitleProps, Notes} from "./types";
+import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps, FetchNotesByTitleProps, Note} from "./types";
 import { api } from "../../services/api";
 
 export const AuthContext = createContext({})
@@ -7,7 +7,7 @@ export const AuthContext = createContext({})
 export const AuthProvider = ({children}: AuthProviderProps) =>{
 
   const [data, setData] = useState({})
-  const [notes, setNotes] = useState<Notes[]>([])
+  const [notes, setNotes] = useState<Note[]>([])
 
   async function signIn({email, password}: SignInProps){
     
