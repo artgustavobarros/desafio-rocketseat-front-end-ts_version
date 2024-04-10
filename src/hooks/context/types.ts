@@ -34,6 +34,10 @@ export interface Notes{
   user_id: string
 }
 
+export interface FetchNotesByTitleProps{
+  title: string
+}
+
 export interface AuthContextProps{
   data: {
     user: {
@@ -47,8 +51,10 @@ export interface AuthContextProps{
     },
     token: string
   }
+  notes: Notes[]
   signIn: ({email, password}: SignInProps) => void
   signOut: () => void 
   update: ({name, email, old_password, new_password}: UpdateProps) => void
   addNote: ({title, description, rating, arr_tags}: AddNotesProps) => void
+  fetchNotesByTitle: ({title}: FetchNotesByTitleProps) => void
 }

@@ -13,7 +13,6 @@ import { useAuth } from "../hooks/context/context";
 const Routes = () =>{
 
   const {data} = useAuth()
-  console.log(data)
 
   const router = protectedRouter({logged: data.token})
 

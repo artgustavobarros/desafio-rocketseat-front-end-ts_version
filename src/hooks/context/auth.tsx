@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState} from "react";
-import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps} from "./types";
+import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps, FetchNotesByTitleProps, Notes} from "./types";
 import { api } from "../../services/api";
 
 export const AuthContext = createContext({})
@@ -7,12 +7,12 @@ export const AuthContext = createContext({})
 export const AuthProvider = ({children}: AuthProviderProps) =>{
 
   const [data, setData] = useState({})
+  const [notes, setNotes] = useState<Notes[]>([])
 
   async function signIn({email, password}: SignInProps){
     
     try{
       const response = await api.post('/users/login', {email, password})
-      console.log(response)
       const {user, token} = response.data
       api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
@@ -56,6 +56,18 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
     }
   }
 
+  async function fetchNotesByTitle({title}: FetchNotesByTitleProps){
+    try{
+      const response =  await api.get(`/notes/findbytitle?title=${title}`)
+      const {notes} = response.data
+      setNotes(notes)
+    }catch(err){
+      if (err instanceof Error){
+        alert(err.message)
+      }
+    }
+  }
+
   useEffect(() =>{
     const user = localStorage.getItem('user')
     const token = localStorage.getItem('token')
@@ -67,9 +79,17 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
 
   },[])
 
+  useEffect(()=>{
+    async function fetchNotes(){
+      const response = await api.get('/notes')
+      setNotes(response.data.notes)
+    }
+
+    fetchNotes()
+  },[])
 
   return(
-    <AuthContext.Provider value={{data, signIn, signOut, update, addNote}}>
+    <AuthContext.Provider value={{data, notes, setNotes, signIn, signOut, update, addNote, fetchNotesByTitle}}>
       {children}
     </AuthContext.Provider>
   )

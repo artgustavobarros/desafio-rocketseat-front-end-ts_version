@@ -3,23 +3,13 @@ import Button from "../../components/Button"
 import Header from "../../components/Header"
 import Note from "../../components/Note"
 import { Container, Content, Headline } from "./styles"
-import { useEffect, useState } from "react"
-import { api } from "../../services/api"
-import { Notes } from "../../hooks/context/types"
+import { useAuth } from "../../hooks/context/context"
 
 
 const Home = () =>{
 
-  const [notes, setNotes] = useState<Notes[]>([])
+  const {notes} = useAuth()
 
-  useEffect(()=>{
-    async function fetchNotes(){
-      const response = await api.get('/notes/')
-      setNotes(response.data.notes)
-    }
-
-    fetchNotes()
-  },[])
 
   return(
     <Container>
