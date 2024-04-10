@@ -16,6 +16,7 @@ export const Content = styled.div`
   place-content: center;
 
   > main {
+
     margin-block: 16px;
     width: 1137px;
     height: 581px;
@@ -98,4 +99,10 @@ export const Description = styled.div`
     color: ${({theme}) => theme.colors.text_white_1};
     text-align: justify;
   }
+`
+
+export const Wrapper = styled.div`
+  display: flex;
+  margin-block: 40px;
+  gap: 40px;
 `

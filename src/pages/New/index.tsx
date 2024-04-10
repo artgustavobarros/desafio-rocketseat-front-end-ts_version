@@ -3,7 +3,7 @@ import Button from "../../components/Button"
 import Header from "../../components/Header"
 import Input from "../../components/Input"
 import Mark from "../../components/Mark"
-import { Container, Content, Description, Marker, Wrapper } from "./styles"
+import { Container, Content, Description, Marker, Wrapper, WrapperButton } from "./styles"
 import { useState } from "react"
 import { useAuth } from "../../hooks/context/context"
 
@@ -60,10 +60,9 @@ const New = () => {
               <Mark title='Novo marcador' onChange={(e) => setTitle(e.target.value)} isnew onClick={() => handleNewMark(title)}/>
             </div>
           </Marker>
-          <Wrapper>
-            <Button title='Excluir filme' inversed/>
-            <Button title='Salvar alterações' onClick={handleAddNote}/>
-          </Wrapper>
+          <WrapperButton>
+            <Button title='Salvar filme' onClick={handleAddNote}/>
+          </WrapperButton>
         </main>
       </Content>
     </Container>

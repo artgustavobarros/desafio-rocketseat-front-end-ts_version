@@ -52,7 +52,7 @@ export const Wrapper = styled.div`
 
 export const WrapperButton = styled.div`
   display: flex;
-  width: 300px;
+  gap: 40px;
   margin-bottom: 40px;  
 `
 

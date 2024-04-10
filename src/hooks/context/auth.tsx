@@ -68,6 +68,7 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
     }
   }
 
+
   useEffect(() =>{
     const user = localStorage.getItem('user')
     const token = localStorage.getItem('token')
@@ -86,7 +87,7 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
     }
 
     fetchNotes()
-  },[])
+  },[notes])
 
   return(
     <AuthContext.Provider value={{data, notes, setNotes, signIn, signOut, update, addNote, fetchNotesByTitle}}>

@@ -1,10 +1,10 @@
 import Button from "../../components/Button"
 import Header from "../../components/Header"
 import Score from "../../components/Score"
-import { By, Container, Content, Date, Description, Headline } from "./styles"
+import { By, Container, Content, Date, Description, Headline, Wrapper } from "./styles"
 import TimerIcon from "../../assets/imgs/timer.svg?react"
 import Tag from "../../components/Tag"
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { api } from "../../services/api"
 import dayjs from "dayjs"
@@ -23,12 +23,23 @@ const firstNote: Note = {
 
 const Preview = () =>{
 
+  const navigate = useNavigate()
+
   const [note, setNote] = useState(firstNote)
   const {id} = useParams()
 
   const date = dayjs(note.updated_at)
 
   const formatedDate = date.format('DD/MM/YY [às] HH:mm')
+
+  function moveToEditPage(){
+    navigate(`/edit/${id}`)
+  }
+
+  async function deleteNote(){
+    navigate('/')
+    await api.delete(`/notes/${id}`)
+  }
 
   useEffect(() =>{
     async function handlePreview(){
@@ -71,6 +82,10 @@ const Preview = () =>{
               {note.description}
             </p>
           </Description>
+          <Wrapper>
+            <Button title='Editar filme' onClick={moveToEditPage}/>
+            <Button title='Excluir filme' inversed onClick={deleteNote}/>
+        </Wrapper>
         </main>
       </Content>
     </Container>
