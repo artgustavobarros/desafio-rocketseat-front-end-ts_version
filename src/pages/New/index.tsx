@@ -22,7 +22,6 @@ const New = () => {
   function handleNewMark(newMark: string){
     setMarks((prev) => [...prev, newMark])
     setTitle('')
-    // TENTAR ENTENDER PQ TITLE NÃO SE CORRIGE
   }
 
   function deleteMark(title: string){

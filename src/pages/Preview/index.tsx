@@ -73,9 +73,14 @@ const Preview = () =>{
             </Date>
           </Headline>
           <section>
-            <Tag title='Ficção científica'/>
-            <Tag title="Drama"/>
-            <Tag title='Família'/>
+            {
+              note.arr_tags.map((tag) => (
+                <Tag 
+                  key={String(tag)}
+                  title={tag}
+                />
+              ))
+            }
           </section>
           <Description>
             <p>

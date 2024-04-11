@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState} from "react";
-import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps, FetchNotesByTitleProps, Note} from "./types";
+import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps, FetchNotesByTitleProps, Note, UpdateNotesProps, firstNote, GetNoteProps } from "./types";
 import { api } from "../../services/api";
 
 export const AuthContext = createContext({})
@@ -8,6 +8,7 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
 
   const [data, setData] = useState({})
   const [notes, setNotes] = useState<Note[]>([])
+  const [note, setNote] = useState<Note>(firstNote)
 
   async function signIn({email, password}: SignInProps){
     
@@ -32,6 +33,27 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
     try{
       const response = await api.post('/users/update',{name, email, old_password, new_password})
       setData((prev) => ({...prev, user: response.data.user}))
+    }catch(err){
+      if (err instanceof Error){
+        alert(err.message);
+      }
+    }
+  }
+
+  async function updateNote({id, title, description, rating, arr_tags}:UpdateNotesProps){
+    try{
+      await api.post(`/notes/update/${id}`,{title, description, rating, arr_tags})
+    }catch(err){
+      if (err instanceof Error){
+        alert(err.message);
+      }
+    }
+  }
+
+  async function getNote({id}: GetNoteProps){
+    try{
+      const response = await api.post(`/notes/${id}`)
+      setNote(response.data.note[0])
     }catch(err){
       if (err instanceof Error){
         alert(err.message);
@@ -90,7 +112,20 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
   },[notes])
 
   return(
-    <AuthContext.Provider value={{data, notes, setNotes, signIn, signOut, update, addNote, fetchNotesByTitle}}>
+    <AuthContext.Provider 
+      value={
+              {
+                data, 
+                notes, 
+                setNotes,
+                note,
+                getNote, 
+                signIn, 
+                signOut, 
+                update,
+                updateNote, 
+                addNote, 
+                fetchNotesByTitle}}>
       {children}
     </AuthContext.Provider>
   )

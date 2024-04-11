@@ -10,10 +10,18 @@ export interface SignInProps{
 }
 
 export interface UpdateProps{
-  name: string
-  email: string
-  old_password: string
-  new_password: string
+  name?: string
+  email?: string
+  old_password?: string
+  new_password?: string
+}
+
+export interface UpdateNotesProps{
+  id: string
+  title?: string
+  description?: string
+  rating?: number
+  arr_tags?: string[]
 }
 
 export interface AddNotesProps{
@@ -34,8 +42,23 @@ export interface Note{
   user_id: string
 }
 
+export const firstNote: Note = {
+  id: '',
+  title: '',
+  description: '',
+  rating: '',
+  arr_tags: [],
+  created_at: '',
+  updated_at: '',
+  user_id: ''
+}
+
 export interface FetchNotesByTitleProps{
   title: string
+}
+
+export interface GetNoteProps{
+  id: string
 }
 
 export interface AuthContextProps{
@@ -52,9 +75,12 @@ export interface AuthContextProps{
     token: string
   }
   notes: Note[]
+  note: Note
   signIn: ({email, password}: SignInProps) => void
   signOut: () => void 
   update: ({name, email, old_password, new_password}: UpdateProps) => void
+  getNote: ({id}: GetNoteProps) => void
+  updateNote: ({id, title, description, rating, arr_tags}:UpdateNotesProps) => void
   addNote: ({title, description, rating, arr_tags}: AddNotesProps) => void
   fetchNotesByTitle: ({title}: FetchNotesByTitleProps) => void
 }
