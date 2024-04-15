@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState} from "react";
-import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps, FetchNotesByTitleProps, Note, UpdateNotesProps, firstNote, GetNoteProps } from "./types";
+import { AuthProviderProps, AddNotesProps, SignInProps, UpdateProps, FetchNotesByTitleProps, Note, UpdateNotesProps, firstNote, GetNoteProps} from "./types";
 import { api } from "../../services/api";
 
 export const AuthContext = createContext({})
@@ -34,6 +34,21 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
       const response = await api.post('/users/update',{name, email, old_password, new_password})
       setData((prev) => ({...prev, user: response.data.user}))
     }catch(err){
+      if (err instanceof Error){
+        alert(err.message);
+      }
+    }
+  }
+
+  async function avatarUpdate(avatarFile: File){
+    try{
+      const fileUploadForm = new FormData()
+      fileUploadForm.append('avatar', avatarFile)
+      const {data} = await api.patch('/users/avatar', fileUploadForm)
+      console.log(data.user)
+      setData((prev) => ({...prev, user: data.user}))
+    }catch(err){
+      console.log(err)
       if (err instanceof Error){
         alert(err.message);
       }
@@ -123,6 +138,7 @@ export const AuthProvider = ({children}: AuthProviderProps) =>{
                 signIn, 
                 signOut, 
                 update,
+                avatarUpdate,
                 updateNote, 
                 addNote, 
                 fetchNotesByTitle}}>

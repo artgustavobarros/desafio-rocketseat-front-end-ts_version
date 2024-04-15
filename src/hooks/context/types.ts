@@ -61,6 +61,10 @@ export interface GetNoteProps{
   id: string
 }
 
+export interface AvatarUpdateProps{
+  avatarFile: File
+}
+
 export interface AuthContextProps{
   data: {
     user: {
@@ -79,6 +83,7 @@ export interface AuthContextProps{
   signIn: ({email, password}: SignInProps) => void
   signOut: () => void 
   update: ({name, email, old_password, new_password}: UpdateProps) => void
+  avatarUpdate: (avatarFile: File) => void
   getNote: ({id}: GetNoteProps) => void
   updateNote: ({id, title, description, rating, arr_tags}:UpdateNotesProps) => void
   addNote: ({title, description, rating, arr_tags}: AddNotesProps) => void

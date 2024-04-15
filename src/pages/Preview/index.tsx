@@ -9,6 +9,8 @@ import { useEffect, useState } from "react"
 import { api } from "../../services/api"
 import dayjs from "dayjs"
 import { Note } from "../../hooks/context/types"
+import { useAuth } from "../../hooks/context/context"
+import avatarPlaceholder from '../../assets/imgs/avatar_placeholder.svg'
 
 const firstNote: Note = {
   id: '',
@@ -24,9 +26,12 @@ const firstNote: Note = {
 const Preview = () =>{
 
   const navigate = useNavigate()
+  const {id} = useParams()
+
+  const {data} = useAuth()
 
   const [note, setNote] = useState(firstNote)
-  const {id} = useParams()
+  const avatar = data.user.avatar? `${api.defaults.baseURL}/users/img/${data.user.avatar}`: avatarPlaceholder
 
   const date = dayjs(note.updated_at)
 
@@ -62,10 +67,10 @@ const Preview = () =>{
             <Score score={Number(note.rating)} preview/>
             <By>
               <img  
-                src='https://avatars.githubusercontent.com/u/49030804?v=4'
+                src={avatar}
                 alt='avatar profile'
               />
-              <p>Por Rodrigo Gonçalves</p>
+              <p>Por {data.user.name}</p>
             </By>
             <Date>
               <TimerIcon/>

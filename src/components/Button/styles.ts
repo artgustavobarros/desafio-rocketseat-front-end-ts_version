@@ -9,6 +9,7 @@ export const Container = styled.button<ButtonStyledProps>`
   border-radius: 8px;
   font-family: 'Roboto Slab';
   font-size: 16px;
+  padding: 16px;
 
   background-color: ${({theme, $transparent, $inversed}) => {
     if ($transparent){

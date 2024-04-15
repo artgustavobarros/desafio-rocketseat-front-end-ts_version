@@ -3,12 +3,18 @@ import Input from "../Input"
 import { Container, Logo, Profile } from "./styles"
 import { useAuth } from "../../hooks/context/context"
 import { useState } from "react"
+import avatarPlaceholder from '../../assets/imgs/avatar_placeholder.svg'
+import { api } from "../../services/api"
 
 const Header = () =>{
   const navigate = useNavigate()
-  const {signOut, fetchNotesByTitle} = useAuth()
+  const {signOut, fetchNotesByTitle, data} = useAuth()
+
+  const {user} = data
 
   const [search, setSearch] = useState('')
+
+  const avatarURL = user.avatar? `${api.defaults.baseURL}/users/img/${user.avatar}`: avatarPlaceholder
 
   function handleSignOut(){
     navigate('/')
@@ -29,13 +35,13 @@ const Header = () =>{
       <Input placeholder="Pesquisar pelo título" onChange={(e) => handleSearch(e)}/>
       <Profile>
         <div>
-          <strong>Rodrigo Gonçalves</strong>
+          <strong>{user.name}</strong>
           <button onClick={handleSignOut}>Sair</button>
         </div>
         <div>
           <Link to='/profile'>
             <img
-              src='https://avatars.githubusercontent.com/u/49030804?v=4'
+              src={avatarURL}
               alt='avatar profile'
             />
           </Link>
