@@ -6,32 +6,32 @@ import Mark from "../../components/Mark"
 import { Container, Content, Description, Marker, Wrapper, WrapperButton } from "./styles"
 import { useEffect, useState } from "react"
 import { api } from "../../services/api"
-import { Note } from "../../hooks/context/types"
+// import { Note } from "../../hooks/context/types"
 import { useAuth } from "../../hooks/context/context"
 
-const firstNote: Note = {
-  id: '',
-  title: '',
-  description: '',
-  rating: '',
-  arr_tags: [],
-  created_at: '',
-  updated_at: '',
-  user_id: ''
-}
+// const firstNote: Note = {
+//   id: '',
+//   title: '',
+//   description: '',
+//   rating: '',
+//   arr_tags: [],
+//   created_at: '',
+//   updated_at: '',
+//   user_id: ''
+// }
 
 const Edit = () => {
 
-  const { id } = useParams()
+  const { id = '' } = useParams()
   const navigate = useNavigate()
   const {updateNote} = useAuth()
 
-  const [data, setData] = useState<Note>(firstNote)
+  // const [data, setData] = useState<Note>(firstNote)
   const [newTag, setNewTag] = useState<string>('Novo marcador')
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
   const [rating, setRating] = useState<number>(0)
-  const [tags, setTags] = useState([])
+  const [tags, setTags] = useState<string[]>([])
 
   function addTag(){
     setTags((prev) => [...prev, newTag])
@@ -56,7 +56,7 @@ const Edit = () => {
     async function fetch() {
       const response = await api.get(`/notes?id=${id}`)
       const note = response.data.notes[0]
-      setData(note)
+      // setData(note)
       setTitle(note.title)
       setDescription(note.description)
       setRating(note.rating)
